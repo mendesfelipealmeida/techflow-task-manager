@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gerenciador de Tarefas</title>
+  </head>
+  <body>
+    <h1>TechFlow Task Manager</h1>
+
+    <input id="task" placeholder="Digite uma tarefa">
+    <button onclick="addTask()">Adicionar</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+      function addTask() {
+        const task = document.getElementById("task").value;
+        const li = document.createElement("li");
+        li.innerText = task;
+        document.getElementById("taskList").appendChild(li);
+      }
+    </script>
+  </body>
+</html>
