@@ -1,8 +1,27 @@
-✅ TechFlow Task Manager
+# TechFlow Task Manager
 
-Sistema de gerenciamento de tarefas desenvolvido para uma startup de logística.
-O objetivo é permitir que a equipe acompanhe o workflow em tempo real, priorize tarefas e monitore o desempenho dos colaboradores.
+Projeto desenvolvido para simular o gerenciamento de tarefas utilizando metodologias ágeis.
 
-🧠 Objetivo do Projeto
+## Objetivo
+Criar um sistema simples para controle de tarefas, permitindo acompanhar o fluxo do trabalho em tempo real.
 
-Criar um sistema simples, mas funcional, aplicando conceitos de Engenharia de Software e metodologias ágeis utilizando o GitHub como ferramenta principal de gestão.# techflow-task-manager
+## Metodologia Utilizada
+- Planejamento ágil baseado em Scrum
+- Organização das tarefas em quadro Kanban:
+  - A Fazer
+  - Em Progresso
+  - Concluído
+
+## Ferramentas Utilizadas
+- GitHub (repositório, issues e Kanban)
+- Linguagem: HTML e JavaScript
+
+## Funcionalidades
+- Cadastro de tarefas
+- Atualização de status das tarefas (A Fazer -> Em Progresso -> Concluído)
+
+## Como executar o sistema
+1. Baixe ou clone o repositório
+2. Abra o arquivo `index.html` no navegador
+
+Projeto criado para fins acadêmicos.
