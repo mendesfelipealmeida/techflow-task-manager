@@ -1,23 +1,100 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Gerenciador de Tarefas</title>
-  </head>
-  <body>
-    <h1>TechFlow Task Manager</h1>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>TechFlow Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f2f2f2;
+        }
 
-    <input id="task" placeholder="Digite uma tarefa">
-    <button onclick="addTask()">Adicionar</button>
+        h1 {
+            text-align: center;
+        }
 
-    <ul id="taskList"></ul>
+        input {
+            padding: 8px;
+            width: 250px;
+        }
 
-    <script>
-      function addTask() {
-        const task = document.getElementById("task").value;
-        const li = document.createElement("li");
-        li.innerText = task;
-        document.getElementById("taskList").appendChild(li);
-      }
-    </script>
-  </body>
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            margin-bottom: 8px;
+            background: white;
+            padding: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>TechFlow Task Manager</h1>
+
+<input id="taskInput" placeholder="Digite uma tarefa">
+<button onclick="addTask()">Adicionar</button>
+
+<ul id="taskList"></ul>
+
+<script>
+    let editingIndex = null;
+
+    function addTask() {
+        const input = document.getElementById("taskInput");
+        const taskName = input.value.trim();
+
+        if (taskName === "") {
+            alert("Digite uma tarefa!");
+            return;
+        }
+
+        if (editingIndex !== null) {
+            document.querySelectorAll("#taskList li")[editingIndex].children[0].innerText = taskName;
+            editingIndex = null;
+        } else {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${taskName}</span>
+                <div>
+                    <button class="btn" onclick="editTask(this)">Editar</button>
+                    <button class="btn" onclick="deleteTask(this)">Excluir</button>
+                </div>
+            `;
+            document.getElementById("taskList").appendChild(li);
+        }
+
+        input.value = "";
+    }
+
+    function deleteTask(button) {
+        button.parentElement.parentElement.remove();
+    }
+
+    function editTask(button) {
+        const li = button.parentElement.parentElement;
+        const taskName = li.children[0].innerText;
+
+        document.getElementById("taskInput").value = taskName;
+        editingIndex = Array.from(li.parentNode.children).indexOf(li);
+    }
+</script>
+
+</body>
 </html>
