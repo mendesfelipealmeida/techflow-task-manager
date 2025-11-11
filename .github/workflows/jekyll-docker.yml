@@ -1,20 +1,36 @@
-name: Jekyll site CI
+name: Jekyll CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Instalar dependências do Jekyll
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build do site Jekyll
+        run: bundle exec jekyll build
+
+      - name: Upload do build como artefato
+        uses: actions/upload-artifact@v3
+        with:
+          name: site-gerado
+          path: _site/
